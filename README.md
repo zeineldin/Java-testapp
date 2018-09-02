@@ -1,12 +1,21 @@
-# sparkjava-war-example
-Build war with maven and sparkjava framework
+# DevOpsArea Sample Java App -example
+Build war with maven and DevOpsArea framework
 
 Steps:
 
-1. Download a fresh [Tomcat 8 distribution](https://tomcat.apache.org/download-80.cgi)
-2. Clone the repository to your local machine
-3. Run mvn package
-4. Copy the generated `sparkjava-hello-world-1.0.war` to the Tomcat `webapps` folder
-5. Start Tomcat by running `bin\startup.bat` (or `bin\startaup.sh` for Linux)
-5. Tomcat will automatically deploy the war
-6. Open [http://localhost:8080/sparkjava-hello-world-1.0/hello](http://localhost:8080/sparkjava-hello-world-1.0/hello) in your browser
+1. Clone the repository to your local machine
+2. The Dockerfile will do.
+
+   A. Create maven container 
+     --> copy pom.xml to /tmp 
+     --> copy folder "src" to /tmp/src 
+     --> go to /tmp folder then run "mvn package"
+     --> the previos command will generate devopsarea-01.war
+   B. Create tomcat container
+     --> will move the file devopsarea-01.war from maven container to /webapp in tomcat contaner
+     --> do health check to make sure that the artifact is deployed
+
+3. Run 'docker build -t devopsarea .'  # will create a Docker image called devopsarea
+4. Run 'docker run -d -p 8080:8080 --name devopsarea-sample-java-app devopsarea' # will create a container called devopsarea-sample-java-app and will forward the container internal port 8080 to locathost 8080 in the hosted machine 
+ 
+5. Open [http://localhost:8080/devopsarea-1.0/hello](http://localhost:8080/devopsarea-01/hello) in your browser

@@ -7,15 +7,17 @@ Steps:
 2. The Dockerfile will do.
 
    A. Create maven container <br />
-      copy pom.xml to /tmp <br />
-      copy folder "src" to /tmp/src <br />
-      Go to /tmp folder then run "mvn package"<br />
-      The previos command will generate devopsarea-01.war<br />
+      --> copy pom.xml to /tmp <br />
+      --> copy folder "src" to /tmp/src <br />
+      --> Go to /tmp folder then run "mvn package"<br />
+      --> The previos command will generate devopsarea-01.war<br />
    B. Create tomcat container<br />
-      Will move the file devopsarea-01.war from maven container to /webapp in tomcat contaner<br />
-      Do health check to make sure that the artifact is deployed
+      --> Will move the file devopsarea-01.war from maven container to /webapp in tomcat contaner<br />
+      --> Do health check to make sure that the artifact is deployed
 
-3. Run 'docker build -t devopsarea .'  -->  will create a Docker image called devopsarea
-4. Run 'docker run -d -p 8080:8080 --name devopsarea-sample-java-app devopsarea' # will create a container called devopsarea-sample-java-app and will forward the container internal port 8080 to locathost 8080 in the hosted machine 
+3. Run 'docker build -t devopsarea .' <br />
+   -->  Will create a Docker image called devopsarea <br />
+4. Run 'docker run -d -p 8080:8080 --name devopsarea-sample-java-app devopsarea' <br />
+   -->  Will create a container called devopsarea-sample-java-app and will forward the container internal port 8080 to locathost 8080 in the hosted machine 
  
 5. Open [http://localhost:8080/devopsarea-1.0/](http://localhost:8080/devopsarea-1.0/) in your browser

@@ -18,4 +18,4 @@ Steps:
 3. Run 'docker build -t devopsarea .'  -->  will create a Docker image called devopsarea
 4. Run 'docker run -d -p 8080:8080 --name devopsarea-sample-java-app devopsarea' # will create a container called devopsarea-sample-java-app and will forward the container internal port 8080 to locathost 8080 in the hosted machine 
  
-5. Open [http://localhost:8080/devopsarea-1.0/](http://localhost:8080/devopsarea-01/) in your browser
+5. Open [http://localhost:8080/devopsarea-1.0/](http://localhost:8080/devopsarea-1.0/) in your browser

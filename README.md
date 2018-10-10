@@ -1,7 +1,7 @@
 # DevOpsArea Sample Java App -example
 Build war with maven and DevOpsArea framework
 
-Steps:
+Steps are:
 
 1. Clone the repository to your local machine
 2. The Dockerfile will do.

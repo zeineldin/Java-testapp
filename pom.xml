@@ -8,7 +8,14 @@
 	<artifactId>devopsarea</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-
+        <dependencies>
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-core</artifactId>
+			<version>2.3</version>
+		</dependency>
+	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>

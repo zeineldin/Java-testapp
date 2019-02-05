@@ -7,11 +7,14 @@ Steps are the following:
 2. The Dockerfile will do:
 
         A. Create maven container <br />
+        
      + --> copy pom.xml to /tmp <br />
      + --> copy folder "src" to /tmp/src <br />
       --> Go to /tmp folder then run "mvn package"<br />
       --> The previos command will generate devopsarea-01.war<br />
+        
         B. Create tomcat container<br />
+        
      + --> Will move the file devopsarea-01.war from maven container to /webapp in tomcat contaner<br />
      + --> Do health check to make sure that the artifact is deployed
 

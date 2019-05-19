@@ -19,12 +19,8 @@ Steps are the following:
      + --> Will move the file devopsarea-01.war from maven container to /webapp in tomcat contaner<br />
      + --> Do health check to make sure that the artifact is deployed
 
-
 3. Run 'docker build -t devopsarea .' <br />
       -->  Will create a Docker image called devopsarea <br />
 4. Run 'docker run -d -p 8080:8080 --name devopsarea-sample-java-app devopsarea' <br />
       -->  Will create a container called devopsarea-sample-java-app and will forward the container internal port 8080 to locathost 8080 in the hosted machine 
 5. Open [http://localhost:8080/devopsarea-1.0/](http://localhost:8080/devopsarea-1.0/) in your browser and see the result.
-
-
-

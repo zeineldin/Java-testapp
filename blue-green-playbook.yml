@@ -61,7 +61,7 @@
 
    - name: deploy the generated package to tomcat
      copy:
-       src: ./devopsarea-1.0.war
+       src: ./target/devopsarea-1.0.war
        dest: /var/lib/tomcat8/webapps/
        mode: 0777   
   

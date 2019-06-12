@@ -5,19 +5,19 @@
   become_method: sudo
 
   tasks:
-   - name: Stop Tomcat 
+   - name: Stop Tomcat
      service:
        name: tomcat8
        state: stopped
 
-  - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
-    wait_for:
+   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
+     wait_for:
        host: 0.0.0.0
        port: 8080
        delay: 1
        state: drained
 
-#  Remove the file to get out of the LoadBalancer 
+#  Remove the file to get out of the LoadBalancer
    - file:
        path: /var/lib/tomcat8/webapps/ROOT/devops.html
        state: absent
@@ -30,8 +30,8 @@
 #   - name: Install Tomcat
 #     apt: name=tomcat8 state=present
 
-    - name: Install Tomcat admin
-      apt: name=tomcat8-admin state=present
+   - name: Install Tomcat admin
+     apt: name=tomcat8-admin state=present
 
    - name: Configure Tomcat users
      copy:
@@ -40,12 +40,14 @@
        owner: root
        group: tomcat8
        mode: 0640
+   
+   
 
-   - name: Start Tomcat 
+   - name: Start Tomcat
      service:
        name: tomcat8
        state: started
- 
+
 #   - name: Stop the firewall
 #     service:
 #       name: ufw
@@ -63,18 +65,18 @@
      copy:
        src: ./target/devopsarea-1.0.war
        dest: /var/lib/tomcat8/webapps/
-       mode: 0777   
-  
+       mode: 0777
+
    - name: Check that you can connect (GET) to a page and it returns a status 200
      uri:
        url: http://localhost:8080/devopsarea-1.0
-  
+
 #   - pause:
 #       seconds: 50
 
-#    Create the file to join LoadBalancer 
+#    Create the file to join LoadBalancer
    - file:
        path: /var/lib/tomcat8/webapps/ROOT/devops.html
        state: touch
-       
+
 #   - shell: touch /var/lib/tomcat8/webapps/ROOT/devops.html

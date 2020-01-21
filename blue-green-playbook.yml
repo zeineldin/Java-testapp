@@ -75,8 +75,9 @@
 #       seconds: 50
 
 #    Create the file to join LoadBalancer
-   - file:
-       path: /var/lib/tomcat8/webapps/ROOT/devops.html
-       state: touch
+   - name: Adding the healthcheck file
+     copy:
+       src: devops.html
+       dest: /var/lib/tomcat8/webapps/ROOT/
 
 #   - shell: touch /var/lib/tomcat8/webapps/ROOT/devops.html

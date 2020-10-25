@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>devopsarea</groupId>
-	<artifactId>devopsarea</artifactId>
-	<version></version>
+	<artifactId>maven-release-plugin</artifactId>
+	<version>3.0.0-M1</version>
 	<packaging>war</packaging>
         <dependencies>
 		<dependency>

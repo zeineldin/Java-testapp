@@ -29,6 +29,14 @@
 					<debug>true</debug>
 				</configuration>
 			</plugin>
+
+
+ 				 <plugin>
+			        <artifactId>maven-release-plugin</artifactId>
+       				 <version>2.5.2</version>
+        			<configuration>
+ 				 </plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>

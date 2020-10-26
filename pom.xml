@@ -6,7 +6,7 @@
 
 	<groupId>devops</groupId>
 	<artifactId>devops</artifactId>
-	<version>${build.number}</version>
+	<version>${BUILD_TIMESTAMP}</version>
 	<packaging>war</packaging>
         <dependencies>
 		<dependency>

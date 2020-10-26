@@ -6,7 +6,7 @@
 
 	<groupId>devops</groupId>
 	<artifactId>devops</artifactId>
-	<version>${kokowawa}</version>
+	<version>${X}</version>
 	<packaging>war</packaging>
         <dependencies>
 		<dependency>

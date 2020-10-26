@@ -6,7 +6,7 @@
 
 	<groupId>devops</groupId>
 	<artifactId>devops</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
         <dependencies>
 		<dependency>
@@ -33,7 +33,7 @@
  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>3.0.0-M1</version>
         <configuration>
           <tagNameFormat>v@{project.version}</tagNameFormat>
         </configuration>

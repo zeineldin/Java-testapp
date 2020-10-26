@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-release-plugin</artifactId>
+	<groupId>devops</groupId>
+	<artifactId>devops</artifactId>
 	<version>v1.0</version>
 	<packaging>war</packaging>
         <dependencies>

@@ -35,6 +35,13 @@ node {
     stage('sleep') {
     sleep time: 50000, unit: 'NANOSECONDS'
     }
+    
+           stage (‘Code analyse’) {
+            sh 'echo “Run some lints”'
+            }
+    
+    
+    
 
          stage('push to DockerHub') {
             //steps { 

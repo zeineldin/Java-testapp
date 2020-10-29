@@ -57,10 +57,14 @@ node {
 
        
      stage('stage1'){
-          withCheckout(scm) {
-         echo "GIT_COMMIT is ${env.GIT_COMMIT}"
-          }
+             
+            sh  '''    
+            echo "Commit $(git rev-parse HEAD)"
+            '''                  
+        
     }
+         
+       
     
     
     

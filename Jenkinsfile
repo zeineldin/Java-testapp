@@ -34,10 +34,12 @@ node {
             
    //     }
    //---->
-    stage('sleep') {
-    sh 'sleep 20' 
-    }
-    
+ 
+    //--->
+   // stage('sleep') {
+  //  sh 'sleep 20' 
+  //  }
+    //--> 
            stage ('Code analyse') {
             sh 'echo “Run some lints”'
             }
@@ -52,7 +54,7 @@ node {
             def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
             sh "docker login -u=$username -p=${password}"
                 println ret
-                sh 'docker push mzain/testapp":$GIT_COMMIT"'
+                sh 'docker push mzain/testapp":$BUILD_NUMBER"'
             //}
          }
              

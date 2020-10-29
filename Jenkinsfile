@@ -33,7 +33,7 @@ node {
    //     }
    //---->
     stage('sleep') {
-    sleep time: 50000, unit: 'NANOSECONDS'
+    sh 'sleep 20' 
     }
     
            stage ('Code analyse') {

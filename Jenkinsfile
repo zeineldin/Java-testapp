@@ -54,20 +54,10 @@ node {
              
          }
    
-  //  ---
- //       BUILD_FULL = sh (
- //   script: "git log -1 --pretty=%B | grep '\\[jenkins-full]'",
- //   returnStatus: true
-// ) == 0
-//        --
-    
-    
-    
+
+       
      stage('stage1'){
-    def commit = sh ( script: "git log -1 | grep ^commit | awk '{print $2}' |  cut -c-6",
-     returnStatus: true
-    ) == 0
-                     
+    def commit = sh (script: 'git log -1 | grep ^commit | awk '{print $2}' |  cut -c-6', returnStatus: true)              
     echo "${commit} "
 
     }

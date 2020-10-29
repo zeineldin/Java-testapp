@@ -64,7 +64,7 @@ println ret
      stage('stage1'){
              
             sh  '''    
-            echo "Commit $(git rev-parse HEAD }"
+            echo "Commit $(git rev-parse HEAD)"
             '''                      
     }
          

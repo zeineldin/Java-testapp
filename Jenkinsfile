@@ -26,26 +26,25 @@ node {
     
     
       stage('Build Docker image') {
-             steps {    // Run Maven on a Unix agent.
+             //steps {    // Run Maven on a Unix agent.
                 sh "docker build -t mzain/testapp:v1 . "
-            }
+            //}
             
         }
   // }
          stage('push to DockerHub') {
-            steps { 
+            //steps { 
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
     // some block
             sh "docker login -u=$username -p=${password}"
             sh 'docker push mzain/testapp:v1'
-            }
+            //}
          }
              
          }
    
     
     stage('upload to artifatory') {
-      def server = Artifactory.server 'art'
        def uploadSpec = """{
     "files": [{
                 "pattern": "target/*.war",

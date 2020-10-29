@@ -24,14 +24,15 @@ node {
         }
     }
     
-    
-      stage('Build Docker image') {
+   //----> 
+   //   stage('Build Docker image') {
              //steps {    // Run Maven on a Unix agent.
-                sh "docker build -t mzain/testapp:v1 . "
+    //            sh "docker build -t mzain/testapp:v1 . "
             //}
             
-        }
-  // }
+   //     }
+   //---->
+
          stage('push to DockerHub') {
             //steps { 
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {

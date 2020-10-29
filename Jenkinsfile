@@ -57,8 +57,9 @@ node {
 
        
      stage('stage1'){
-    echo "GIT_COMMIT is ${env.GIT_COMMIT}"
-
+          withCheckout(scm) {
+         echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+          }
     }
     
     

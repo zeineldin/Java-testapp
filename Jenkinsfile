@@ -57,10 +57,10 @@ node {
 
        
      stage('stage1'){
- //   def commit = sh (script: 'git log -1 | grep ^commit | awk '{print $2}' |  cut -c-6', returnStatus: true) 
-    def output = sh returnStdout: true, script: 'git log -1 | grep ^commit | awk '{print $2}' |  cut -c-6'
+    def commit = sh '$GIT_COMMIT', returnStatus: true) 
+    //def output = sh returnStdout: true, script: ''
 
-    echo "${output} "
+    echo "${commit} "
 
     }
     

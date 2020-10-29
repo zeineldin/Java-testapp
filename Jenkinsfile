@@ -55,13 +55,17 @@ node {
          }
    
 
-       
+    stage('stage0') {
+    def ret = sh(script: 'date', returnStdout: true)
+println ret
+    }
+    
+    
      stage('stage1'){
              
             sh  '''    
-            echo "Commit $(git rev-parse HEAD) | cut -c-6 "
-            '''                  
-        
+            echo "Commit $(git rev-parse HEAD| cut -c-6}"
+            '''                      
     }
          
        

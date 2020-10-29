@@ -2,6 +2,8 @@ node {
     cleanWs()
     def mvnHome
     def server = Artifactory.server 'art'
+    def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
+
 
 
     stage('Preparation') { // for display purposes
@@ -48,17 +50,17 @@ node {
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
     // some block
             sh "docker login -u=$username -p=${password}"
-            sh 'docker push mzain/testapp:v1'
+                sh 'docker push mzain/testapp:${ret}'
             //}
          }
              
          }
    
 
-    stage('stage0') {
-    def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
-println ret
-    }
+//    stage('stage0') {
+ //   def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
+//println ret
+ //   }
     
     
      stage('stage1'){

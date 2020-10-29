@@ -1,34 +1,44 @@
 pipeline {
-   agent any
+    agent any
 
-   tools {
-      // Install the Maven version configured as "M3" and add it to the path.
-      maven "maven-devops"
-      ////def server = Artifactory.server "artifactory"
-  ///    artifactory "artifactory"
-   }
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "devops"
+    }
 
-   stages {
-      stage('Build') {
-         steps {
-            // Get some code from a GitHub repository
-            /// git 'https://github.com/zeineldin/Java-testapp.git'
-
-            // Run Maven on a Unix agent.
-            sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
-            // To run Maven on a Windows agent, use
-            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-         }
-
-         post {
-            // If Maven was able to run the tests, even if some of the test
-            // failed, record the test results and archive the jar file.
-            success {
-///               junit '**/target/surefire-reports/TEST-*.xml'
-               archiveArtifacts 'target/*.war'
+    stages {
+        stage('Check out the code') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/zeineldin/Java-testapp.git'
+            }
+        }
+        stage('Build with maven') {
+             steps {    // Run Maven on a Unix agent.
+                sh "mvn clean package"
+            }
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            
+        stage('Build Docker image') {
+             steps {    // Run Maven on a Unix agent.
+                sh "docker build -t mzain/testapp:v1 . "
+            }
+            
+        }
+  // }
+         stage('push to DockerHub') {
+            steps { 
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
+    // some block
+            sh "docker login -u=$username -p=${password}"
+            sh 'docker push mzain/testapp:v1'
             }
          }
-      }
-   }
+             
+         }
+  
+  }
 }
+         

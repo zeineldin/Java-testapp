@@ -57,9 +57,7 @@ node {
 
        
      stage('stage1'){
-  
-
-    echo "${GIT_COMMIT} "
+    echo "GIT_COMMIT is ${env.GIT_COMMIT}"
 
     }
     

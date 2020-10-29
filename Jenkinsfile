@@ -36,7 +36,7 @@ node {
     sleep time: 50000, unit: 'NANOSECONDS'
     }
     
-           stage (‘Code analyse’) {
+           stage ('Code analyse') {
             sh 'echo “Run some lints”'
             }
     

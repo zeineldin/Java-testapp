@@ -33,7 +33,7 @@ node {
    //     }
    //---->
     stage('sleep') {
-    sleep time: 500, unit: 'NANOSECONDS'
+    sleep time: 50000, unit: 'NANOSECONDS'
     }
 
          stage('push to DockerHub') {

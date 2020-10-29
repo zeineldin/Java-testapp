@@ -49,6 +49,7 @@ node {
             //steps { 
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
     // some block
+            def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
             sh "docker login -u=$username -p=${password}"
                 sh 'docker push mzain/testapp:${ret}'
             //}

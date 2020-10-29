@@ -51,7 +51,8 @@ node {
     // some block
             def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
             sh "docker login -u=$username -p=${password}"
-                sh 'docker push mzain/testapp:"${ret}"'
+                println ret
+                sh 'docker push mzain/testapp":$BUILD_NUMBER"'
             //}
          }
              

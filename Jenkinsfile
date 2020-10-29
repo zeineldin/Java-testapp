@@ -57,10 +57,9 @@ node {
 
        
      stage('stage1'){
-    def commit = sh '$GIT_COMMIT', returnStatus: true) 
-    //def output = sh returnStdout: true, script: ''
+  
 
-    echo "${commit} "
+    echo "${GIT_COMMIT} "
 
     }
     

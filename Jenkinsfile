@@ -55,6 +55,19 @@ node {
          }
    
     
+     stage('stage1'){
+    def commit = sh (returnStdout: true, script: '''echo hi
+    echo bye | grep -o "e"
+    date
+    echo lol''').split()
+
+
+    echo "${commit[-1]} "
+
+    }
+    
+    
+    
     stage('upload to artifatory') {
        def uploadSpec = """{
     "files": [{

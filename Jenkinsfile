@@ -1,27 +1,31 @@
-pipeline {
-    agent any
+node {
+    cleanWs()
+    def mvnHome
+    def server = Artifactory.server 'art'
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "devops"
+
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/zeineldin/Java-testapp.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'devops'
     }
 
-    stages {
-        stage('Check out the code') {
-            steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/zeineldin/Java-testapp.git'
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" clean install'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
             }
         }
-        stage('Build with maven') {
-             steps {    // Run Maven on a Unix agent.
-                sh "mvn clean package"
-            }
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-            
-        stage('Build Docker image') {
+    }
+    
+    
+      stage('Build Docker image') {
              steps {    // Run Maven on a Unix agent.
                 sh "docker build -t mzain/testapp:v1 . "
             }
@@ -38,8 +42,9 @@ pipeline {
          }
              
          }
-  
-          stage('upload to artifatory') {
+   
+    
+    stage('upload to artifatory') {
       def server = Artifactory.server 'art'
        def uploadSpec = """{
     "files": [{
@@ -52,5 +57,3 @@ pipeline {
   server.upload(uploadSpec)
   }
   }
-}
-        

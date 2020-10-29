@@ -39,6 +39,18 @@ pipeline {
              
          }
   
+          stage('upload to artifatory') {
+      def server = Artifactory.server 'art'
+       def uploadSpec = """{
+    "files": [{
+                "pattern": "target/*.war",
+                "target": "libs-snapshot-local"
+            }
+        ]
+    }"""
+
+  server.upload(uploadSpec)
+  }
   }
 }
-         
+        

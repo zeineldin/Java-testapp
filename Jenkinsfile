@@ -56,7 +56,7 @@ node {
    
 
     stage('stage0') {
-    def ret = sh(script: 'date', returnStdout: true)
+    def ret = sh(script: 'git rev-parse HEAD', returnStdout: true)
 println ret
     }
     

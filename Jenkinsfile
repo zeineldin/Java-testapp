@@ -26,10 +26,10 @@ node {
         }
     }
     
-   //----> 
-   //   stage('Build Docker image') {
+   
+       stage('Build Docker image') {
              //steps {    // Run Maven on a Unix agent.
-    //            sh "docker build -t mzain/testapp:v1 . "
+                sh "docker build -t mzain/testapp:v1 . "
             //}
             
    //     }
@@ -55,7 +55,7 @@ node {
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
     // some block
             def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
-            sh "docker login -u=$username -p=${password}"
+            sh "docker login -u=mzain -p=${password}"
                 println ret
                 sh "docker push mzain/testapp:${ret}"
             //}

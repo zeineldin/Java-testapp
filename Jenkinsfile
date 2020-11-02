@@ -32,7 +32,7 @@ node {
                 sh "docker build -t mzain/testapp:v1 . "
             //}
             
-   //     }
+     }
    //---->
  
     //--->

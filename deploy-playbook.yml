@@ -1,5 +1,5 @@
 ---
-- hosts: tomcat
+- hosts: web
   serial: 1
   become: yes
   become_method: sudo
@@ -37,13 +37,13 @@
 
 #   - name: wait for tomcat to start
 #     wait_for: port=8080
-   - name: Adding the healthcheck file
-     copy:
-       src: devops.html
-       dest: /var/lib/tomcat8/webapps/ROOT/
+#   - name: Adding the healthcheck file
+#     copy:
+#       src: v1-devopsarea-1.0.war
+#       dest: /var/lib/tomcat8/webapps/ROOT/
 
    - name: deploy the generated package to tomcat
      copy:
-       src: ./target/devopsarea-1.0.war
+       src: ./target/v1-devopsarea-1.0.war
        dest: /var/lib/tomcat8/webapps/
        mode: 0777                                                                                                                                                                              

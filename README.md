@@ -1,3 +1,4 @@
+
 # DevOpsArea Sample Java App -example
 
 Build war with maven and DevOpsArea framework

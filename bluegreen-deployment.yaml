@@ -44,7 +44,7 @@
 
    - name: deploy the generated package to tomcat
      copy:
-       src: /var/lib/jenkins/workspace/ansible-deploy/target/v1-devopsarea-1.0.war
+       src: /var/lib/jenkins/workspace/Ansible/target/v1-devopsarea-1.0.war
        dest: /var/lib/tomcat8/webapps/
        mode: 0777
 

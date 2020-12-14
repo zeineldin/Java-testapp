@@ -61,3 +61,6 @@
      copy:
        src: devops.html
        dest: /var/lib/tomcat8/webapps/ROOT/
+
+   - pause:
+       seconds: 10

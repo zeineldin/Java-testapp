@@ -5,33 +5,33 @@
   become_method: sudo
 
   tasks:
-   - name: Stop Tomcat
-     service:
-       name: tomcat8
-       state: stopped
+#   - name: Stop Tomcat
+#     service:
+#       name: tomcat8
+#       state: stopped
 
-   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
-     wait_for:
-       host: 0.0.0.0
-       port: 8080
-       delay: 1
-       state: drained
+#   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
+#     wait_for:
+#       host: 0.0.0.0
+#       port: 8080
+#       delay: 1
+3       state: drained
 
 #  Remove the file to get out of the LoadBalancer
    - file:
        path: /var/lib/tomcat8/webapps/ROOT/devops.html
        state: absent
 
-   - name: Install Tomcat admin
-     apt: name=tomcat8-admin state=present
+#   - name: Install Tomcat admin
+#     apt: name=tomcat8-admin state=present
 
-   - name: Configure Tomcat users
-     copy:
-       src: tomcat-users.xml
-       dest: /etc/tomcat8/
-       owner: root
-       group: tomcat8
-       mode: 0640
+#   - name: Configure Tomcat users
+#     copy:
+#       src: tomcat-users.xml
+#       dest: /etc/tomcat8/
+#       owner: root
+#       group: tomcat8
+#       mode: 0640
 
    - name: Start Tomcat
      service:
@@ -50,7 +50,7 @@
        mode: 0777
 
    - pause:
-       seconds: 60
+       seconds: 20
 
    - name: Check that you can connect (GET) to a page and it returns a status 200
      uri:

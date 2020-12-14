@@ -15,7 +15,7 @@
 #       host: 0.0.0.0
 #       port: 8080
 #       delay: 1
-3       state: drained
+#       state: drained
 
 #  Remove the file to get out of the LoadBalancer
    - file:

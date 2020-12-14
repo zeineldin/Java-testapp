@@ -50,7 +50,7 @@
        mode: 0777
 
    - pause:
-       seconds: 20
+       seconds: 60
 
    - name: Check that you can connect (GET) to a page and it returns a status 200
      uri:

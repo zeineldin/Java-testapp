@@ -2,6 +2,7 @@
 
 Build war with maven and DevOpsArea framework
 omar
+pp
 
 Steps are the following:
 

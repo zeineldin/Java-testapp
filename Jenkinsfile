@@ -1,7 +1,7 @@
 node {
     cleanWs()
     def mvnHome
-   // def server = Artifactory.server 'art'
+   /// def server = Artifactory.server 'art'
     /// def ret = sh(script: 'git rev-parse HEAD | cut -c-6', returnStdout: true)
 
 

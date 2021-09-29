@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>devops</groupId>
-	<artifactId>v1</artifactId>
-	<version>devopsarea-1.0</version>
+	<artifactId>v2</artifactId>
+	<version>devopsarea-2.0</version>
 	<packaging>war</packaging>
         <dependencies>
 		<dependency>

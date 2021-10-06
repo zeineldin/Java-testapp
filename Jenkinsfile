@@ -17,7 +17,8 @@ pipeline {
             }
             steps {
                 echo "Hello, ${PERSON}, nice to meet you."
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                //sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn install' 
 
             }
         }

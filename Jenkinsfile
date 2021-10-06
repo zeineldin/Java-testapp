@@ -32,20 +32,30 @@ pipeline {
                     message: 'User input required - Some Yes or No question?',
                     parameters: [
                             [$class: 'ChoiceParameterDefinition',
-                             choices: ['no','yes'].join('\n'),
+                             choices: ['Dev','Stg','Prod'].join('\n'),
                              name: 'input',
                              description: 'Menu - select box option']
                     ])
 
                 echo "The answer is: ${USER_INPUT}"
 
-                if( "${USER_INPUT}" == "yes"){
+                if( "${USER_INPUT}" == "Dev"){
                 //do something
-                  echo 'the answer is yes'
-                } else {
-                //do something else
-                  echo 'the answer is not yes'
+                  echo 'the answer is Dev'
                 }
+                if( "${USER_INPUT}" == "Stg"){
+                //do something
+                  echo 'the answer is Stg'
+                }
+                if( "${USER_INPUT}" == "Prod"){
+                //do something
+                  echo 'the answer is Prod'
+                }
+                
+                //} else {
+                //do something else
+                //  echo 'the answer is not yes'
+                //}
             }
         }
         }

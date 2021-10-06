@@ -2,7 +2,7 @@ pipeline {
     agent any 
     stages {
         stage('input') {
-         input {
+            input {
                 message "Should we continue?"
                 ok "Yes, we should."
                 submitter "alice,bob"

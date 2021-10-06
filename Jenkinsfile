@@ -27,7 +27,7 @@ pipeline {
             //====
             script {
             // Define Variable
-             def USER_INPUT = input(
+                def USER_INPUT = input(
                     message: 'User input required - Some Yes or No question?',
                     parameters: [
                             [$class: 'ChoiceParameterDefinition',
@@ -36,22 +36,23 @@ pipeline {
                              description: 'Menu - select box option']
                     ])
 
-            echo "The answer is: ${USER_INPUT}"
+                echo "The answer is: ${USER_INPUT}"
 
-            if( "${USER_INPUT}" == "yes"){
+                if( "${USER_INPUT}" == "yes"){
                 //do something
-            } else {
+                } else {
                 //do something else
+                }
             }
         }
             
             //===
             
-            steps {
-                echo 'testing stage '
+         //   steps {
+         //       echo 'testing stage '
                 
-            }
-        }
+         //   }
+       // }
         
         stage('deploy') {
             steps {

@@ -41,8 +41,10 @@ pipeline {
 
                 if( "${USER_INPUT}" == "yes"){
                 //do something
+                  echo 'the answer is yes'
                 } else {
                 //do something else
+                  echo 'the answer is not yes'
                 }
             }
         }

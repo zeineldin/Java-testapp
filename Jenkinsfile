@@ -24,6 +24,7 @@ pipeline {
             }
         }
         stage('test') {
+          steps {
             //====
             script {
             // Define Variable
@@ -45,7 +46,7 @@ pipeline {
                 }
             }
         }
-            
+        }
             //===
             
          //   steps {

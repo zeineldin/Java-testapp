@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building stage'
                 sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
-                sh 'echo "The branch name is $BUILD_NAME in shell command as well."'
+                sh 'echo "The branch name is $BRANCH_NAME in shell command as well."'
             }
         }
         stage('test') {

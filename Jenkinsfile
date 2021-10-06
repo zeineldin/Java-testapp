@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
     stages {
         stage('input') {
             input {
@@ -13,6 +16,8 @@ pipeline {
             }
             steps {
                 echo "Hello, ${PERSON}, nice to meet you."
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+
             }
         }
         stage('build') {

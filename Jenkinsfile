@@ -11,7 +11,7 @@ pipeline {
              
                 }
             }
-         steps {
+            steps {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         stage('build') {

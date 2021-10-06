@@ -5,6 +5,7 @@ pipeline {
             
             steps {
                 echo 'Building stage'
+                sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
                 
             }
         }

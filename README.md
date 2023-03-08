@@ -1,6 +1,10 @@
-
 #
+#
+<<<<<<< HEAD
 ## DevOpsArea Sample Java App -example
+=======
+# DevOpsArea Sample Java App -example
+>>>>>>> 1f2ba40150b6b770f7c6d2723e90caa9c82bacc1
 
 Build war with maven and DevOpsArea framework
 

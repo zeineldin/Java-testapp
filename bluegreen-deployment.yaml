@@ -7,7 +7,7 @@
   tasks:
 #   - name: Stop Tomcat
 #     service:
-#       name: tomcat8
+#       name: tomcat9
 #       state: stopped
 
 #   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
@@ -19,23 +19,23 @@
 
 #  Remove the file to get out of the LoadBalancer
    - file:
-       path: /var/lib/tomcat8/webapps/ROOT/devops.html
+       path: /var/lib/tomcat9/webapps/ROOT/devops.html
        state: absent
 
 #   - name: Install Tomcat admin
-#     apt: name=tomcat8-admin state=present
+#     apt: name=tomcat9-admin state=present
 
 #   - name: Configure Tomcat users
 #     copy:
 #       src: tomcat-users.xml
-#       dest: /etc/tomcat8/
+#       dest: /etc/tomcat9/
 #       owner: root
-#       group: tomcat8
+# 
 #       mode: 0640
 
    - name: Start Tomcat
      service:
-       name: tomcat8
+       name: tomcat9
        state: started
 
 

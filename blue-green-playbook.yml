@@ -7,7 +7,7 @@
   tasks:
    - name: Stop Tomcat
      service:
-       name: tomcat8
+       name: tomcat9
        state: stopped
 
    - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
@@ -19,33 +19,32 @@
 
 #  Remove the file to get out of the LoadBalancer
    - file:
-       path: /var/lib/tomcat8/webapps/ROOT/devops.html
+       path: /var/lib/tomcat9/webapps/ROOT/devops.html
        state: absent
 
-#  - shell: rm /var/lib/tomcat8/webapps/ROOT/devops.html
+#  - shell: rm /var/lib/tomcat9/webapps/ROOT/devops.html
 
 #   - name: Install Java
 #     apt: name=default-jdk state=present
 
 #   - name: Install Tomcat
-#     apt: name=tomcat8 state=present
+#     apt: name=tomcat9 state=present
 
    - name: Install Tomcat admin
-     apt: name=tomcat8-admin state=present
+     apt: name=tomcat9-admin state=present
 
    - name: Configure Tomcat users
      copy:
        src: tomcat-users.xml
-       dest: /etc/tomcat8/
+       dest: /etc/tomcat9/
        owner: root
-       group: tomcat8
        mode: 0640
    
    
 
    - name: Start Tomcat
      service:
-       name: tomcat8
+       name: tomcat9
        state: started
 
 #   - name: Stop the firewall
@@ -55,7 +54,7 @@
 
 #   - name: restart tomcat
 #     service:
-#       name: tomcat8
+#       name: tomcat9
 #       state: restarted
 
    - name: wait for tomcat to start
@@ -64,7 +63,7 @@
    - name: deploy the generated package to tomcat
      copy:
        src: ./target/devopsarea-1.0.war
-       dest: /var/lib/tomcat8/webapps/
+       dest: /var/lib/tomcat9/webapps/
        mode: 0777
 
    - name: Check that you can connect (GET) to a page and it returns a status 200
@@ -78,6 +77,6 @@
    - name: Adding the healthcheck file
      copy:
        src: devops.html
-       dest: /var/lib/tomcat8/webapps/ROOT/
+       dest: /var/lib/tomcat9/webapps/ROOT/
 
-#   - shell: touch /var/lib/tomcat8/webapps/ROOT/devops.html
+#   - shell: touch /var/lib/tomcat9/webapps/ROOT/devops.html

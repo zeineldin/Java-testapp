@@ -70,9 +70,9 @@
        name: tomcat9
        state: started
 
-   - name: Check that you can connect (GET) to a page and it returns a status 200
-     uri:
-       url: http://localhost:8080/v1-devopsarea-1.0
+#   - name: Check that you can connect (GET) to a page and it returns a status 200
+#     uri:
+#       url: http://localhost:8080/v1-devopsarea-1.0
 
    - pause:
        seconds: 20

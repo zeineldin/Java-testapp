@@ -5,17 +5,17 @@
   become_method: sudo
 
   tasks:
-#   - name: Stop Tomcat
-#     service:
-#       name: tomcat9
-#       state: stopped
+   - name: Stop Tomcat
+     service:
+       name: tomcat9
+       state: stopped
 
-#   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
-#     wait_for:
-#       host: 0.0.0.0
-#       port: 8080
-#       delay: 1
-#       state: drained
+   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
+     wait_for:
+       host: 0.0.0.0
+       port: 8080
+       delay: 1
+       state: drained
 
 #  Remove the file to get out of the LoadBalancer
 #   - file:
@@ -39,8 +39,8 @@
 #       dest: /etc/tomcat9/
 #       owner: root
 #       mode: 0640
-   
-  
+
+
 
 #   - name: Stop the firewall
 #     service:
@@ -61,14 +61,18 @@
        dest: /var/lib/tomcat9/webapps/
        mode: 0777
 
-   - name: Check that you can connect (GET) to a page and it returns a status 200
-     uri:
-       url: http://localhost:8080/v1-devopsarea-1.0
+#   - name: Check that you can connect (GET) to a page and it returns a status 200
+#     uri:
+#      url: http://localhost:8080/v1-devopsarea-1.0
 
    - name: Start Tomcat
      service:
        name: tomcat9
        state: started
+
+   - name: Check that you can connect (GET) to a page and it returns a status 200
+     uri:
+       url: http://localhost:8080/v1-devopsarea-1.0
 
 #   - pause:
 #       seconds: 50

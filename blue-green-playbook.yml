@@ -77,7 +77,7 @@
 #   - pause:
 #       seconds: 50
 
-    Create the file to join LoadBalancer
+  #  Create the file to join LoadBalancer
    - name: Adding the healthcheck file
      copy:
        src: devops.html

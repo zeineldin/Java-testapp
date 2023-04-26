@@ -20,9 +20,9 @@
      copy:
        src: tomcat-users.xml
        dest: /etc/tomcat9/
-       owner: root
-       group: tomcat9
-       mode: 640
+       #owner: root
+       #group: tomcat9
+       #mode: 640
 
    - name: Stop the firewall
      service:

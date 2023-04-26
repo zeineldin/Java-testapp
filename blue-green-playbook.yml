@@ -5,22 +5,22 @@
   become_method: sudo
 
   tasks:
-   - name: Stop Tomcat
-     service:
-       name: tomcat9
-       state: stopped
+#   - name: Stop Tomcat
+#     service:
+#       name: tomcat9
+#       state: stopped
 
-   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
-     wait_for:
-       host: 0.0.0.0
-       port: 8080
-       delay: 1
-       state: drained
+#   - name: Waits for port 8080 of any IP to close active connections, don't start checking for 1 seconds
+#     wait_for:
+#       host: 0.0.0.0
+#       port: 8080
+#       delay: 1
+#       state: drained
 
 #  Remove the file to get out of the LoadBalancer
-#   - file:
-#       path: /var/lib/tomcat9/webapps/ROOT/devops.html
-#       state: absent
+   - file:
+       path: /var/lib/tomcat9/webapps/ROOT/devops.html
+       state: absent
 
 #  - shell: rm /var/lib/tomcat9/webapps/ROOT/devops.html
 
@@ -77,10 +77,10 @@
 #   - pause:
 #       seconds: 50
 
-#    Create the file to join LoadBalancer
-#   - name: Adding the healthcheck file
-#     copy:
-#       src: devops.html
-#       dest: /var/lib/tomcat9/webapps/ROOT/
+    Create the file to join LoadBalancer
+   - name: Adding the healthcheck file
+     copy:
+       src: devops.html
+       dest: /var/lib/tomcat9/webapps/ROOT/
 
 #   - shell: touch /var/lib/tomcat9/webapps/ROOT/devops.html

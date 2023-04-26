@@ -4,24 +4,24 @@
   become: yes
   become_method: sudo
   #  vars:
-  #  package_name: devopsarea-1.0.war
+  #  package_name: v1-devopsarea-1.0.war
 
   tasks:
    - name: Install Java
      apt: name=default-jdk state=present
 
    - name: Install Tomcat
-     apt: name=tomcat8 state=present
+     apt: name=tomcat9 state=present
 
    - name: Install Tomcat admin
-     apt: name=tomcat8-admin state=present
+     apt: name=tomcat9-admin state=present
 
    - name: Configure Tomcat users
      copy:
        src: tomcat-users.xml
-       dest: /etc/tomcat8/
+       dest: /etc/tomcat9/
        owner: root
-       group: tomcat8
+       group: tomcat9
        mode: 640
 
    - name: Stop the firewall
@@ -31,7 +31,7 @@
 
 #   - name: restart tomcat
 #     service:
-#       name: tomcat8
+#       name: tomcat9
 #       state: restarted
 
 
@@ -45,5 +45,5 @@
    - name: deploy the generated package to tomcat
      copy:
        src: ./target/v1-devopsarea-1.0.war
-       dest: /var/lib/tomcat8/webapps/
+       dest: /var/lib/tomcat9/webapps/
        mode: 0777                                                                                                                                                                              

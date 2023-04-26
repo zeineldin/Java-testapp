@@ -5,7 +5,7 @@
   become_method: sudo
 
   tasks:
-#   - name: Stop Tomcat
+##   - name: Stop Tomcat
 #     service:
 #       name: tomcat9
 #       state: stopped

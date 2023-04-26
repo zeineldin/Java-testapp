@@ -18,9 +18,9 @@
        state: drained
 
 #  Remove the file to get out of the LoadBalancer
-   - file:
-       path: /var/lib/tomcat9/webapps/ROOT/devops.html
-       state: absent
+#   - file:
+#       path: /var/lib/tomcat9/webapps/ROOT/devops.html
+#       state: absent
 
 #  - shell: rm /var/lib/tomcat9/webapps/ROOT/devops.html
 
@@ -30,22 +30,17 @@
 #   - name: Install Tomcat
 #     apt: name=tomcat9 state=present
 
-   - name: Install Tomcat admin
-     apt: name=tomcat9-admin state=present
+#   - name: Install Tomcat admin
+#     apt: name=tomcat9-admin state=present
 
-   - name: Configure Tomcat users
-     copy:
-       src: tomcat-users.xml
-       dest: /etc/tomcat9/
-       owner: root
-       mode: 0640
+#   - name: Configure Tomcat users
+#     copy:
+#       src: tomcat-users.xml
+#       dest: /etc/tomcat9/
+#       owner: root
+#       mode: 0640
    
-   
-
-   - name: Start Tomcat
-     service:
-       name: tomcat9
-       state: started
+  
 
 #   - name: Stop the firewall
 #     service:
@@ -57,8 +52,8 @@
 #       name: tomcat9
 #       state: restarted
 
-   - name: wait for tomcat to start
-     wait_for: port=8080
+#   - name: wait for tomcat to start
+#     wait_for: port=8080
 
    - name: deploy the generated package to tomcat
      copy:
@@ -70,13 +65,18 @@
      uri:
        url: http://localhost:8080/v1-devopsarea-1.0
 
+   - name: Start Tomcat
+     service:
+       name: tomcat9
+       state: started
+
 #   - pause:
 #       seconds: 50
 
 #    Create the file to join LoadBalancer
-   - name: Adding the healthcheck file
-     copy:
-       src: devops.html
-       dest: /var/lib/tomcat9/webapps/ROOT/
+#   - name: Adding the healthcheck file
+#     copy:
+#       src: devops.html
+#       dest: /var/lib/tomcat9/webapps/ROOT/
 
 #   - shell: touch /var/lib/tomcat9/webapps/ROOT/devops.html

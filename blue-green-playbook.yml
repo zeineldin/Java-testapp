@@ -74,8 +74,8 @@
      uri:
        url: http://localhost:8080/v1-devopsarea-1.0
 
-#   - pause:
-#       seconds: 50
+   - pause:
+       seconds: 20
 
   #  Create the file to join LoadBalancer
    - name: Adding the healthcheck file

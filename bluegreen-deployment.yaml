@@ -46,7 +46,7 @@
      copy:
        src: ./target/v1-devopsarea-1.0.war
        #src: /var/lib/jenkins/workspace/Ansible/target/v1-devopsarea-1.0.war
-       dest: /var/lib/tomcat8/webapps/
+       dest: /var/lib/tomcat9/webapps/
        mode: 0777
 
    - pause:
@@ -60,7 +60,7 @@
    - name: Adding the healthcheck file
      copy:
        src: devops.html
-       dest: /var/lib/tomcat8/webapps/ROOT/
+       dest: /var/lib/tomcat9/webapps/ROOT/
 
    - pause:
        seconds: 10

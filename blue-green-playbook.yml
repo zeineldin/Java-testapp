@@ -1,5 +1,5 @@
 ---
-- hosts: tomcat
+- hosts: web
   serial: 1
   become: yes
   become_method: sudo
@@ -62,13 +62,13 @@
 
    - name: deploy the generated package to tomcat
      copy:
-       src: ./target/devopsarea-1.0.war
+       src: ./target/v1-devopsarea-1.0.war
        dest: /var/lib/tomcat9/webapps/
        mode: 0777
 
    - name: Check that you can connect (GET) to a page and it returns a status 200
      uri:
-       url: http://localhost:8080/devopsarea-1.0
+       url: http://localhost:8080/v1-devopsarea-1.0
 
 #   - pause:
 #       seconds: 50

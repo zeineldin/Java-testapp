@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cp pom.xml /tmp/ && cp src /tmp/src/ && cd /tmp'
+        sh 'cp pom.xml /tmp/ && cp -r src /tmp/src/ && cd /tmp'
         sh 'mvn clean package'
 
             }

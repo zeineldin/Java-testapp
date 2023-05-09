@@ -5,6 +5,11 @@ pipeline {
             args '--user root -v /run/docker.sock:/var/run/docker.sock --name zein' // mount Docker socket to access the host's Docker daemon
         }
     }
+    environment {
+             DOCKER_IMAGE = " mzain/testimage:${BUILD_NUMBER}"
+             // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
+             REGISTRY_CREDENTIALS = credentials('docker-credentials')
+        } 
     stages {
         stage('Checkout') {
             steps {
@@ -19,14 +24,14 @@ pipeline {
                 sh 'cp pom.xml /tmp/ && cp -r src /tmp/src/ && cd /tmp'
                 sh 'mvn clean package'
             }
-        }
+        
     
-        stage('Build and Push Docker Image') {
-          environment {
-             DOCKER_IMAGE = " mzain/testimage:${BUILD_NUMBER}"
-             // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
-             REGISTRY_CREDENTIALS = credentials('docker-credentials')
-        }
+  //      stage('Build and Push Docker Image') {
+  //        environment {
+  //           DOCKER_IMAGE = " mzain/testimage:${BUILD_NUMBER}"
+              // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
+  //           REGISTRY_CREDENTIALS = credentials('docker-credentials')
+  //      }
             steps {
               script {
                   //sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
@@ -36,6 +41,7 @@ pipeline {
                   docker.withRegistry('https://index.docker.io/v1/', "docker-credentials") {
                      dockerImage.push()
                 }
+               }
             }
         }
     }

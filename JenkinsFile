@@ -1,24 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.5.2-jdk-8-alpine'
-            args '--user root -v /run/docker.sock:/var/run/docker.sock'
-            // mount Docker socket to access the host's Docker daemon
-        }
+  agent {
+    docker {
+      image 'maven:3.5.2-jdk-8-alpine'
+      args '--user root -v /run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                sh 'echo passed'
-                //git branch: 'main', url: 'https://github.com/zeineldin/Java-testapp.git'
-            }
-        }
-        stage('Build and Test') {
-            steps {
-                sh 'ls -ltr'
-                // build the project and create a JAR file
-                sh 'cp pom.xml /tmp/ && cp src /tmp/src/ && cd /tmp'
-                sh 'mvn clean package'
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        //git branch: 'main', url: 'https://github.com/zeineldin/Java-testapp.git'
+      }
+    }
+    stage('Build and Test') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cp pom.xml /tmp/ && cp src /tmp/src/ && cd /tmp'
+        sh 'mvn clean package'
+
             }
         }
     }

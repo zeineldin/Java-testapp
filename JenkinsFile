@@ -32,7 +32,7 @@ pipeline {
                  // dockerImage.push()
                  // docker.withRegistry('', "docker-credentials") {
                  //   dockerImage.push()
-                  sh 'echo $REGISTRY_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                  sh 'echo $REGISTRY_CREDENTIALS_PSW | docker login -u $REGISTRY_CREDENTIALS_USR --password-stdin'
             
                   sh 'docker push $DOCKER_IMAGE'
               

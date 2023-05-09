@@ -28,10 +28,7 @@ pipeline {
                   //sh 'sleep 120' 
                   //dockerImage = docker.build registry + ":$BUILD_NUMBER"
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
-                 // docker.withRegistry( '', registryCredential ) {
-                 // dockerImage.push()
-                 // docker.withRegistry('', "docker-credentials") {
-                 //   dockerImage.push()
+                  sh 'docker commit zein ${DOCKER_IMAGE}'
                   sh 'echo $REGISTRY_CREDENTIALS_PSW | docker login -u $REGISTRY_CREDENTIALS_USR --password-stdin'
             
                   sh 'docker push $DOCKER_IMAGE'

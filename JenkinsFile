@@ -25,7 +25,7 @@ pipeline {
                   // build the project and create a JAR file
                   sh 'cp pom.xml /tmp/ && cp -r src /tmp/src/ && cd /tmp'
                   sh 'mvn clean package'
-                  sh 'sleep 120' 
+                  //sh 'sleep 120' 
                   sh 'docker commit zein ${DOCKER_IMAGE}'
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
                  // docker.withRegistry( '', registryCredential ) {

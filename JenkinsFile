@@ -24,9 +24,8 @@ pipeline {
                   // build the project and create a JAR file
                   sh 'cp pom.xml /tmp/ && cp -r src /tmp/src/ && cd /tmp'
                   sh 'mvn clean package'
-                   
+                  sh 'sleep 120' 
                   sh 'docker commit zein ${DOCKER_IMAGE}'
-                  sh 'sleep 120'
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
                   docker.withRegistry('https://index.docker.io/v1/', "docker-credentials") {
                      dockerImage.push()

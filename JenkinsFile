@@ -29,9 +29,7 @@ pipeline {
                   sh 'docker commit zein ${DOCKER_IMAGE}'
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
                   docker.withRegistry('https://index.docker.io/v1/', "docker-credentials") {
-                     dockerImage.push()
-                  
-        
+                    dockerImage.push()
               }
                }
             }

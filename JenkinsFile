@@ -7,7 +7,7 @@ pipeline {
         
     }
     environment {
-             DOCKER_IMAGE = " mzain/testimage:${BUILD_NUMBER}"
+             DOCKER_IMAGE = " mzain/maven:${BUILD_NUMBER}"
              // DOCKERFILE_LOCATION = "/spring-boot-app/Dockerfile"
              REGISTRY_CREDENTIALS = credentials('docker-credentials')
         } 

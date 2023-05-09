@@ -2,8 +2,9 @@ pipeline {
     agent {
         docker {
             image 'maven:3.5.2-jdk-8-alpine'
-            args '--user root -v /run/docker.sock:/var/run/docker.sock --name zein' // mount Docker socket to access the host's Docker daemon
+            args '--user root -v /run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker --name zein' // mount Docker socket to access the host's Docker daemon       
         }
+        
     }
     environment {
              DOCKER_IMAGE = " mzain/testimage:${BUILD_NUMBER}"

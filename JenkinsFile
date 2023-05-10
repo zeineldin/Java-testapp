@@ -18,14 +18,15 @@ pipeline {
                 //git branch: 'main', url: 'https://github.com/zeineldin/Java-testapp.git'
             }
         }
-        stage('Build and Test') {
+        stage('Build the code ') {
             steps {
               script {
                   sh 'ls -ltr'
                   // build the project and create a JAR file
                   sh 'cp pom.xml /tmp/ && cp -r src /tmp/src/ && cd /tmp'
                   sh 'mvn clean package'
-                  //sh 'sleep 120' 
+                  //sh 'sleep 120'
+                  // Push the code as a docker image  
                   //dockerImage = docker.build registry + ":$BUILD_NUMBER"
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
                   sh 'docker commit zein ${DOCKER_IMAGE}'

@@ -1,4 +1,4 @@
-###
+
 ## DevOpsArea Sample Java App -example
 =======
 # DevOpsArea Sample Java App -example

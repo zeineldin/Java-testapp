@@ -37,7 +37,10 @@ jobs:
           push: true
           tags: mzain/test:${{ env.NOW }}
 
-
+  change_docker_tag:
+    runs-on: ubuntu-latest
+    steps:
+  
       - uses: actions/checkout@v1
         with:
           ref: ${{ github.head_ref }}

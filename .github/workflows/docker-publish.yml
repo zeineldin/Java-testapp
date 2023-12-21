@@ -8,15 +8,15 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+      - uses: actions/checkout@v2
     #steps:
     #  - uses: actions/checkout@v2
     #  - name: Bump version and push tag
-          id: tag_version
-          uses: zeineldin/github-tag-action@v6.1   
+        id: tag_version
+        uses: zeineldin/github-tag-action@v6.1   
+
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2

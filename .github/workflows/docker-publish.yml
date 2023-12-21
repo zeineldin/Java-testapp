@@ -35,4 +35,4 @@ jobs:
     #    file: ./path/to/Dockerfile
     #    platforms: linux/amd64,linux/arm64
           push: true
-          tags: mzain/${{ Now }}
+          tags: mzain/${{ NOW }}

@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Bump version and push tag
-        run: git rev-parse HEAD | cut -c -7  >> $GITHUB_ENV
+        run: echo "NOW=$(git rev-parse HEAD | cut -c -7)" >> $GITHUB_ENV
 
       - name: Echo current date
         run: echo $GITHUB_ENV 
@@ -35,4 +35,4 @@ jobs:
     #    file: ./path/to/Dockerfile
     #    platforms: linux/amd64,linux/arm64
           push: true
-          tags: mzain/${{ steps.tag_version.outputs.new_tag }}
+          tags: mzain/$NOW

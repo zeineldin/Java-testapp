@@ -51,6 +51,8 @@ jobs:
            cat ./k8s/deployment.yaml 
            git config --global user.name 'zeineldin'
            git config --global user.email 'zeineldin@users.noreply.github.com'
-           git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
+           git fetch
+           git add ./k8s/deployment.yaml
+           #git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
            git commit -am "Automated report"
            git push origin github_actions

@@ -45,8 +45,9 @@ jobs:
         run: sed -E -i'' "s/(.*nightwolf:).*/\1${{ env.NOW }}/" ./k8s/deployment.yaml
       - name: Commit report
         run: |
-          git config --global user.name 'Your Name'
-          git config --global user.email 'your-username@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
-          git commit -am "Automated report"
-          git push
+           cat ./k8s/deployment.yaml 
+    #      git config --global user.name 'Your Name'
+    #      git config --global user.email 'your-username@users.noreply.github.com'
+    #      git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
+    #      git commit -am "Automated report"
+    #      git push

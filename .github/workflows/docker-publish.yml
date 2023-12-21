@@ -28,14 +28,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
+##      - name: Build and Push Docker Image
+##        uses: docker/build-push-action@v2
+##        with:
     #     context: .
     #    file: ./path/to/Dockerfile
     #    platforms: linux/amd64,linux/arm64
-          push: true
-          tags: mzain/test:${{ env.NOW }}
+##          push: true
+##          tags: mzain/test:${{ env.NOW }}
 
 #  change_docker_tag:
 #    runs-on: ubuntu-latest
@@ -53,4 +53,4 @@ jobs:
            git config --global user.email 'zeineldin@users.noreply.github.com'
            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
            git commit -am "Automated report"
-           git push
+           git push origin github_actions

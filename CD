@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -E -i'' "s/(.*nightwolf:).*/\1$COMMIT/" file.yaml

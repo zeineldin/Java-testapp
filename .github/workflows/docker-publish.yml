@@ -36,3 +36,17 @@ jobs:
     #    platforms: linux/amd64,linux/arm64
           push: true
           tags: mzain/test:${{ env.NOW }}
+
+
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Create report file
+        run: sed -E -i'' "s/(.*nightwolf:).*/\1${{ env.NOW }}/" ./k8s/deployment.yaml
+      - name: Commit report
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
+          git commit -am "Automated report"
+          git push

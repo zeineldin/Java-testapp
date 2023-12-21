@@ -5,7 +5,6 @@ on:
     branches:
       - github_actions
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +13,7 @@ jobs:
       - name: Bump version and push tag
         run: git rev-parse HEAD | cut -c -7  >> $GITHUB_ENV
 
-     - name: Echo current date
+      - name: Echo current date
         run: echo $GITHUB_ENV 
 
       - name: Set up QEMU

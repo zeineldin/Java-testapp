@@ -35,7 +35,7 @@ jobs:
     #    file: ./path/to/Dockerfile
     #    platforms: linux/amd64,linux/arm64
           push: true
-          tags: mzain/test:${{ env.NOW }}
+          tags: mzain/nightwolf:${{ env.NOW }}
 
 #  change_docker_tag:
 #    runs-on: ubuntu-latest

@@ -5,7 +5,7 @@ pipeline {
         // Define your Docker Hub credentials as Jenkins credentials
         DOCKERHUB_CREDENTIALS = credentials('docker')
         // Use the GIT_COMMIT as the tag for the Docker image
-        COMMIT_TAG = env.GIT_COMMIT
+       // COMMIT_TAG = env.GIT_COMMIT
         // Define the Docker image name
         DOCKER_IMAGE_NAME = 'mzain/test'
     }
@@ -34,7 +34,7 @@ pipeline {
                 script {
                     // Push the Docker image to Docker Hub
                     docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
-                        docker.image("${DOCKER_IMAGE_NAME}:${COMMIT_TAG}").push()
+                        docker.image("${DOCKER_IMAGE_NAME}:${env.GIT_COMMIT}").push()
                     }
                 }
             }

@@ -4,6 +4,9 @@ pipeline {
         DOCKER_IMAGE_NAME = "mzain/test"
     }
 
+
+
+    stages {
     stage('Clone repository') {      
         checkout scm
     }
@@ -59,5 +62,6 @@ pipeline {
       }
     }
   }
+}
 }
 }

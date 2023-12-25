@@ -10,12 +10,13 @@ node {
     stage ('check commit tag1 ') {
         
          sh 'git rev-parse HEAD | cut -c -7'
+         script {
+          Commit_tag = `git rev-parse HEAD | cut -c -7`
+          echo "the commit tag = $Commit_tag"   
+        }
     }    
 
-    stage ('get from env') {
-        sh 'echo "Building on git commit = ${GIT_COMMIT}"'
 
-    }    
     stage('Build image') {
   
        app = docker.build("mzain/test")

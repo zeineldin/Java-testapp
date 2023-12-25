@@ -5,7 +5,7 @@ pipeline {
         // Define your Docker Hub credentials as Jenkins credentials
         DOCKERHUB_CREDENTIALS = credentials('docker')
         // Use the GIT_COMMIT as the tag for the Docker image
-       // COMMIT_TAG = env.GIT_COMMIT
+        COMMIT_TAG = `git rev-parse HEAD | cut -c -7`
         // Define the Docker image name
         DOCKER_IMAGE_NAME = 'mzain/test'
     }

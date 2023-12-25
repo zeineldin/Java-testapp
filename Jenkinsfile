@@ -9,8 +9,7 @@ node {
 
     stage ('check commit tag') {
         
-       
-         sh echo "kokowawa"
+         sh 'echo kokowawa'
 
     }    
     stage('Build image') {

@@ -10,10 +10,7 @@ node {
     stage ('check commit tag1 ') {
         
          sh 'git rev-parse HEAD | cut -c -7'
-
-         // Display the variable using scmVars
-      echo "scmVars.GIT_COMMIT"
-      echo "${scmVars.GIT_COMMIT}"
+  
 
 
         
@@ -37,7 +34,7 @@ node {
         
         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
             
-            app.push("${env.GIT_COMMIT}")
+            app.push("${scmVars.GIT_COMMIT}")
         }
     }
     

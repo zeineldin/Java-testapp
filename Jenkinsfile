@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image with the GIT_COMMIT as the tag
-                    docker.build("${DOCKER_IMAGE_NAME}:${COMMIT_TAG}", "-f Dockerfile .")
+                    docker.build("${DOCKER_IMAGE_NAME}:${BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
         }

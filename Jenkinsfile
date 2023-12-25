@@ -4,29 +4,13 @@ pipeline {
         DOCKER_IMAGE_NAME = "mzain/test"
     }
 
-
-
     stages {
       stage('Clone repository') {  
         steps {
         checkout scm
     }
       }
-  //  stage('Build image') {
-  //     app = docker.build("mzain/test")
-  //  }
 
- //   stage('Test image') {
-   //     app.inside {
-   //         sh 'echo "Tests passed"'
-  //      }
-  //  }
-
-   // stage('Push image') {        
-   //  docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-   //         app.push("${env.BUILD_NUMBER}")
-   //     }
-  //  }
 
      stage('Test and Build Docker Image') {
          steps {       
@@ -65,7 +49,7 @@ pipeline {
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
                         sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Java-testapp.git HEAD:zein"
       }
-                }
+      }
     }
   }
 }

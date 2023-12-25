@@ -1,44 +1,26 @@
-pipeline {
-    agent any
+node {
+    def app
 
-    environment {
-        // Define your Docker Hub credentials as Jenkins credentials
-        DOCKERHUB_CREDENTIALS = credentials('docker')
-        // Use the GIT_COMMIT as the tag for the Docker image
-         //       gitCommit = "${env.GIT_COMMIT}"
-        //COMMIT_TAG = `git rev-parse HEAD | cut -c -7`
-        // Define the Docker image name
-        DOCKER_IMAGE_NAME = 'mzain/test'
+    stage('Clone repository') {
+      
+        checkout scm
     }
 
-    stages {
-        stage('Clone Repository') {
-            steps {
-                script {
-                    // Clone the GitHub repository
-                    checkout scm
-                }
-            }
-        }
+    stage('Build image') {
+  
+       app = docker.build("mzain/test")
+    }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build the Docker image with the GIT_COMMIT as the tag
-                    docker.build("${DOCKER_IMAGE_NAME}:${BUILD_NUMBER}", "-f Dockerfile .")
-                }
-            }
-        }
+    stage('Test image') {
 
-        stage('Push to Docker Hub') {
-            steps {
-                script {
-                    // Push the Docker image to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
-                        docker.image("${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}").push()
-                    }
-                }
-            }
+        app.inside {
+            sh 'echo "Tests passed"'
         }
     }
-}
+
+    stage('Push image') {
+        
+        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+            app.push("${env.BUILD_NUMBER}")
+        }
+    }

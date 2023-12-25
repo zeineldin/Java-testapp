@@ -12,7 +12,7 @@ node {
        
          sh echo "kokowawa"
 
-    
+    }    
     stage('Build image') {
   
        app = docker.build("mzain/test")

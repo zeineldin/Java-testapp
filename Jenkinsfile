@@ -4,8 +4,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "mzain/test"
     }
 
-node {
-    def app
+
 
     stage('Clone repository') {
       

@@ -9,7 +9,7 @@ node {
 
     stage ('check commit tag') {
         
-         sh 'echo kokowawa'
+         sh 'git rev-parse HEAD | cut -c -7'
 
     }    
     stage('Build image') {

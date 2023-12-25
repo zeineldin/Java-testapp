@@ -23,7 +23,7 @@ node {
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-            #app.push("${env.BUILD_NUMBER}")
+            
             app.push("${env.GIT_COMMIT}")
         }
     }

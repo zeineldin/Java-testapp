@@ -7,9 +7,13 @@ node {
         checkout scm
     }
 
-    stage ('check commit tag') {
+    stage ('check commit tag1 ') {
         
          sh 'git rev-parse HEAD | cut -c -7'
+    }    
+
+    stage ('get from env') {
+        sh 'echo "Building on git commit = ${GIT_COMMIT}"'
 
     }    
     stage('Build image') {

@@ -42,7 +42,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                         customImage.push("${GIT_COMMIT_REV}")
-                        customImage.push("latest")
+                    //    customImage.push("latest")
                     
                     }
                 }

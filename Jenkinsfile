@@ -35,7 +35,7 @@ pipeline {
                 script {
                     // Push the Docker image to Docker Hub
                     docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
-                        docker.image("${DOCKER_IMAGE_NAME}:${env.GIT_COMMIT}").push()
+                        docker.image("${DOCKER_IMAGE_NAME}:${env.gitCommit}").push()
                     }
                 }
             }

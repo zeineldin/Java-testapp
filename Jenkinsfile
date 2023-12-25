@@ -7,13 +7,18 @@ node {
         checkout scm
     }
 
+    stage ('check commit tag') {
+        
+       
+         sh echo "kokowawa"
+
+    
     stage('Build image') {
   
        app = docker.build("mzain/test")
     }
 
     stage('Test image') {
-  
 
         app.inside {
             sh 'echo "Tests passed"'

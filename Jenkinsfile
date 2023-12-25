@@ -7,7 +7,7 @@ pipeline {
 
 
     stages {
-    stage('Clone repository') {      
+      stage('Clone repository') {      
         checkout scm
     }
   //  stage('Build image') {
@@ -26,14 +26,14 @@ pipeline {
    //     }
   //  }
 
-    stage('Test and Build Docker Image') {
+     stage('Test and Build Docker Image') {
                 script {
                     env.GIT_COMMIT_REV = sh (script: 'git log -n 1 --pretty=format:"%h"', returnStdout: true)
                     customImage = docker.build("${DOCKER_IMAGE_NAME}:${GIT_COMMIT_REV}")
                     }
                     }                           
                                                
-   stage('Push Docker Image') {
+     stage('Push Docker Image') {
         
             
                 script {
@@ -45,7 +45,7 @@ pipeline {
             }
    }
    
-     stage('Update GIT') {
+      stage('Update GIT') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {

@@ -1,83 +1,34 @@
-pipeline {
-    agent any 
-    tools {
-        maven 'maven'
-        //jdk 'jdk8'
+node {
+    def app
+
+    stage('Clone repository') {
+      
+
+        checkout scm
     }
-    stages {
-        stage('input') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-             
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-                //sh 'mvn -Dmaven.test.failure.ignore=true install' 
-                sh 'mvn install' 
 
-            }
-        }
-        stage('build') {
-            
-            steps {
-                echo 'Building stage'
-             //   sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
-                sh 'echo "The branch name is $BRANCH_NAME in shell command as well."'
-            }
-        }
-        stage('test') {
-          steps {
-            //====
-            script {
-            // Define Variable
-                def USER_INPUT = input(
-                    message: 'User input required - Some Yes or No question?',
-                    parameters: [
-                            [$class: 'ChoiceParameterDefinition',
-                             choices: ['Dev','Stg','Prod'].join('\n'),
-                             name: 'input',
-                             description: 'Menu - select box option']
-                    ])
+    stage('Build image') {
+  
+       app = docker.build("mzain/test")
+    }
 
-                echo "The answer is: ${USER_INPUT}"
+    stage('Test image') {
+  
 
-                if( "${USER_INPUT}" == "Dev"){
-                //do something
-                  echo 'the answer is Dev'
-                }
-                if( "${USER_INPUT}" == "Stg"){
-                //do something
-                  echo 'the answer is Stg'
-                }
-                if( "${USER_INPUT}" == "Prod"){
-                //do something
-                  echo 'the answer is Prod'
-                }
-                
-                //} else {
-                //do something else
-                //  echo 'the answer is not yes'
-                //}
-            }
+        app.inside {
+            sh 'echo "Tests passed"'
         }
-        }
-            //===
-            
-         //   steps {
-         //       echo 'testing stage '
-                
-         //   }
-       // }
+    }
+
+    stage('Push image') {
         
-        stage('deploy') {
-            steps {
-                echo 'Deployment Stage'
-            }
+        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+            app.push("${env.BUILD_NUMBER}")
         }
     }
+    
+    stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
 }

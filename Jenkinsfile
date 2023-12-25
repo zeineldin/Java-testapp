@@ -10,10 +10,14 @@ node {
     stage ('check commit tag1 ') {
         
          sh 'git rev-parse HEAD | cut -c -7'
-         script {
-          echo "Building on git commit = ${GIT_COMMIT}"
-          
-        }
+
+         // Display the variable using scmVars
+      echo "scmVars.GIT_COMMIT"
+      echo "${scmVars.GIT_COMMIT}"
+
+
+        
+        
     }    
 
 

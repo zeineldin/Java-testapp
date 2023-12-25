@@ -1,3 +1,9 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_IMAGE_NAME = "mzain/test"
+    }
+
 node {
     def app
 

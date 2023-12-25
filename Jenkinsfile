@@ -28,10 +28,10 @@ node {
                 script {
                     env.GIT_COMMIT_REV = sh (script: 'git log -n 1 --pretty=format:"%h"', returnStdout: true)
                     customImage = docker.build("${DOCKER_IMAGE_NAME}:${GIT_COMMIT_REV}")
-                                               }
-                                               }
-                                               }
-                                               }
+                    }
+                    }
+                    }
+                                               
                                                
    stage('Push Docker Image') {
         

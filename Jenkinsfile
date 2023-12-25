@@ -4,13 +4,9 @@ pipeline {
         DOCKER_IMAGE_NAME = "mzain/test"
     }
 
-
-
-    stage('Clone repository') {
-      
+    stage('Clone repository') {      
         checkout scm
     }
-
   //  stage('Build image') {
   //     app = docker.build("mzain/test")
   //  }
@@ -71,9 +67,5 @@ pipeline {
       }
     }
   }
-}
-
-
-
 }
 }

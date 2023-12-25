@@ -11,8 +11,8 @@ node {
         
          sh 'git rev-parse HEAD | cut -c -7'
          script {
-          Commit_tag = `git rev-parse HEAD | cut -c -7`
-          echo "the commit tag = $Commit_tag"   
+          echo "Building on git commit = ${GIT_COMMIT}"
+          
         }
     }    
 

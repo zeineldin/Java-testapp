@@ -1,45 +1,34 @@
-node {
-    def app
+pipeline {
+    agent any
 
-    stage('Clone repository') {
-      
-
-        checkout scm
+    environment {
+        // Define your Docker Hub credentials as Jenkins credentials
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
+        // Use the GIT_COMMIT as the tag for the Docker image
+        COMMIT_TAG = env.GIT_COMMIT
+        // Define the Docker image name
+        DOCKER_IMAGE_NAME = 'mzain/test'
     }
 
-    stage ('check commit tag1 ') {
-        
-         sh 'git rev-parse HEAD | cut -c -7'
-  
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image with the GIT_COMMIT as the tag
+                    docker.build("${DOCKER_IMAGE_NAME}:${COMMIT_TAG}")
+                }
+            }
+        }
 
-
-        
-        
-    }    
-
-
-    stage('Build image') {
-  
-       app = docker.build("mzain/test")
-    }
-
-    stage('Test image') {
-
-        app.inside {
-            sh 'echo "Tests passed"'
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    // Push the Docker image to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', docker) {
+                        docker.image("${DOCKER_IMAGE_NAME}:${COMMIT_TAG}").push()
+                    }
+                }
+            }
         }
     }
-
-    stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-            
-            app.push("${scmVars.GIT_COMMIT}")
-        }
-    }
-    
-//    stage('Trigger ManifestUpdate') {
-//                echo "triggering updatemanifestjob"
-//                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-//       }
 }

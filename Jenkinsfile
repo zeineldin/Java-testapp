@@ -6,25 +6,49 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-  
-       app = docker.build("mzain/test")
-    }
+  //  stage('Build image') {
+  //     app = docker.build("mzain/test")
+  //  }
 
-    stage('Test image') {
+ //   stage('Test image') {
+   //     app.inside {
+   //         sh 'echo "Tests passed"'
+  //      }
+  //  }
 
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
+   // stage('Push image') {        
+   //  docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+   //         app.push("${env.BUILD_NUMBER}")
+   //     }
+  //  }
 
-    stage('Push image') {
+    stage('Test and Build Docker Image') {
+            
+            steps {
+                script {
+                    env.GIT_COMMIT_REV = sh (script: 'git log -n 1 --pretty=format:"%h"', returnStdout: true)
+                    customImage = docker.build("${DOCKER_IMAGE_NAME}:${GIT_COMMIT_REV}")
+                                               }
+                                               }
+                                               }
+                                               }
+                                               
+   stage('Push Docker Image') {
         
-        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-            app.push("${env.BUILD_NUMBER}")
-        }
-    }
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                        customImage.push("${GIT_COMMIT_REV}")
+                        customImage.push("latest")
+                    }
+                }
+            }
+   }
 
+                
+
+
+    
      stage('Update GIT') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {

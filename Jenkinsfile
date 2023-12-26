@@ -45,7 +45,7 @@ pipeline {
                         //sh "cd .."
                         sh "rm -rf Java-testapp-CD"
                         sh "git clone https://github.com/zeineldin/Java-testapp-CD.git"
-                        sh "cd Argo-CD"
+                        sh "cd Java-testapp-CD"
                         sh "cat app/deployment.yaml"
                         sh "sh artifact_version_update app/deployment.yaml"
                         sh "cat app/deployment.yaml"

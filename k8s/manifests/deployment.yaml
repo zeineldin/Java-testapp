@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: tomcat
-        image: mzain/nightwolf:17fba26
+        image: mzain/nightwolf:cbc31ec
         ports:
         - containerPort: 8080

@@ -9,6 +9,6 @@ public class HelloWorld implements SparkApplication {
 
 	@Override
 	public void init() {
-		get("/", (req, res) -> "DevOps Area is comming  26.12.2023!!!");
+		get("/", (req, res) -> "Final Project 26.12.2023!!!");
 	}
 }

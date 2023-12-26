@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "mzain/test"
+        DOCKER_IMAGE_NAME = "mzain/nightwolf"
     }
 
     stages {

@@ -42,12 +42,14 @@ pipeline {
                         sh "git config user.email eng.mohamed.zeineldin@gmail.com"
                         sh "git config user.name zeineldin"
                         //sh "git switch master"
-                        sh "cat k8s/manifests/deployment.yaml"
-                        sh "sh artifact_version_update k8s/manifests/deployment.yaml"
-                        sh "cat k8s/manifests/deployment.yaml"
+                        sh "git clone https://github.com/zeineldin/Argo-CD.git"
+                        sh "cd "Argo-CD"
+                        sh "cat app/deployment.yaml"
+                        sh "sh artifact_version_update app/deployment.yaml"
+                        sh "cat app/deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Java-testapp.git HEAD:zein"
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Argo-CD.git HEAD:zein"
       }
       }
     }

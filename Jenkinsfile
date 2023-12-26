@@ -42,6 +42,7 @@ pipeline {
                         sh "git config user.email eng.mohamed.zeineldin@gmail.com"
                         sh "git config user.name zeineldin"
                         //sh "git switch master"
+                        sh "rm -rf Argo-CD"
                         sh "git clone https://github.com/zeineldin/Argo-CD.git"
                        // sh "cd Argo-CD"
                         sh "cat Argo-CD/app/deployment.yaml"

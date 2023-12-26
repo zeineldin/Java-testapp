@@ -50,7 +50,7 @@ pipeline {
                         sh "cat Argo-CD/app/deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Argo-CD.git HEAD:zein"
+                        sh "git push -f https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Argo-CD.git HEAD:zein"
       }
       }
     }

@@ -57,6 +57,11 @@ pipeline {
       //}
       //}
     //}
+
+        stage('Trigger CD job ') {
+                echo "triggering CD"
+                build job: 'CD', parameters: [string(name: 'GIT_COMMIT_REV', value: env.GIT_COMMIT_REV)]
+        }
   }
  }
 

@@ -43,7 +43,7 @@ pipeline {
                         sh "git config user.name zeineldin"
                         //sh "git switch master"
                         sh "git clone https://github.com/zeineldin/Argo-CD.git"
-                        sh "cd "Argo-CD"
+                        sh "cd Argo-CD"
                         sh "cat app/deployment.yaml"
                         sh "sh artifact_version_update app/deployment.yaml"
                         sh "cat app/deployment.yaml"

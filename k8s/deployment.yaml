@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: tomcat
+        
     spec:
       containers:
       - name: tomcat
